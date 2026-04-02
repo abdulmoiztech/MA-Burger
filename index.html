@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MA Burger | Burgers So Good, It's Masha Allah.</title>
+    <!-- Fonts: Bebas Neue for Headings, Nunito for Body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --charcoal: #121212;
+            --ember: #FF6B00;
+            --cream: #F5F5F0;
+            --gold: #D4AF37;
+            --black: #0A0A0A;
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-sans: 'Nunito', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--charcoal);
+            color: var(--cream);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Noise Overlay */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 24px 0;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        nav.scrolled {
+            background-color: #111;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 32px;
+            color: var(--ember);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: none;
+            gap: 40px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        .nav-links a:hover {
+            color: var(--ember);
+        }
+
+        .btn-order-nav {
+            background-color: var(--ember);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 0 20px rgba(255, 107, 0, 0.4);
+            animation: pulse 2s infinite;
+            display: none;
+        }
+
+        @media (min-width: 500px) {
+            .btn-order-nav {
+                display: block;
+            }
+        }
+
+        .btn-order-nav:hover {
+            transform: scale(1.05);
+            background-color: #FF8533;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 107, 0, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 35px rgba(255, 107, 0, 0.7); }
+            100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 107, 0, 0.4); }
+        }
+
+        .mobile-toggle {
+            display: block;
+            cursor: pointer;
+            color: var(--cream);
+        }
+
+        @media (min-width: 768px) {
+            .mobile-toggle {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 120px 0 80px;
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 107, 0, 0.15) 0%, transparent 70%);
+            filter: blur(80px);
+            z-index: -1;
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+            gap: 60px;
+        }
+
+        @media (min-width: 1024px) {
+            .hero .container {
+                grid-template-columns: 1.2fr 0.8fr;
+            }
+        }
+
+        .hero-content h1 {
+            font-size: clamp(4rem, 10vw, 8rem);
+            line-height: 0.85;
+            margin-bottom: 24px;
+        }
+
+        .hero-content h1 span.word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-content h1 span.ember {
+            color: var(--ember);
+        }
+
+        .hero-content p {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: rgba(245, 245, 240, 0.7);
+            font-weight: 400;
+            margin-bottom: 40px;
+            max-width: 550px;
+            opacity: 0;
+            animation: fadeIn 0.8s forwards 1s;
+        }
+
+        .hero-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            opacity: 0;
+            animation: fadeIn 0.8s forwards 1.2s;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            font-family: var(--font-display);
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            background-color: var(--ember);
+            color: white;
+            border: none;
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.5);
+            background-color: #FF8533;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline:hover {
+            border-color: white;
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .hero-image {
+            position: relative;
+            opacity: 0;
+            transform: scale(0.95);
+            animation: heroImgIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s;
+        }
+
+        @keyframes heroImgIn {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 50px rgba(255, 107, 0, 0.4));
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            background-color: var(--black);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 24px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .trust-scroll {
+            display: inline-flex;
+            gap: 80px;
+            animation: scroll 30s linear infinite;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 14px;
+            color: rgba(245, 245, 240, 0.5);
+        }
+
+        .trust-item.active {
+            color: var(--gold);
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Menu Section */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            margin-bottom: 12px;
+            line-height: 1;
+        }
+
+        .section-header h2 span {
+            color: var(--ember);
+        }
+
+        .section-header p {
+            color: rgba(245, 245, 240, 0.5);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .menu-card {
+            background-color: #181818;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 24px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--ember);
+            box-shadow: 0 20px 40px rgba(255, 107, 0, 0.2);
+        }
+
+        .card-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .menu-card:hover .card-img img {
+            transform: scale(1.08);
+        }
+
+        .badge {
+            position: absolute;
+            top: 36px;
+            left: 36px;
+            background-color: var(--ember);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            z-index: 10;
+        }
+
+        .card-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .card-info h3 {
+            font-size: 28px;
+            transition: color 0.3s ease;
+        }
+
+        .menu-card:hover h3 {
+            color: var(--ember);
+        }
+
+        .price {
+            color: var(--gold);
+            font-weight: 800;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-card:hover .price {
+            transform: scale(1.1);
+            color: var(--ember);
+        }
+
+        .card-desc {
+            font-size: 15px;
+            color: rgba(245, 245, 240, 0.5);
+            margin-bottom: 24px;
+            font-weight: 400;
+            min-height: 45px;
+        }
+
+        .btn-card {
+            width: 100%;
+            padding: 14px;
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .menu-card:hover .btn-card {
+            background-color: var(--ember);
+            border-color: var(--ember);
+        }
+
+        /* Story Section */
+        .story {
+            background-color: var(--cream);
+            color: var(--charcoal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calligraphy {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 25vw;
+            opacity: 0.04;
+            pointer-events: none;
+            white-space: nowrap;
+            z-index: 0;
+            font-family: serif;
+        }
+
+        .story .container {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .story .container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .story-quote i {
+            color: var(--ember);
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .story-quote h2 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            line-height: 1;
+        }
+
+        .story-quote h2 span {
+            font-family: var(--font-sans);
+            font-style: italic;
+            font-weight: 300;
+            text-transform: lowercase;
+            color: var(--ember);
+        }
+
+        .story-quote h2 span.gold {
+            color: var(--gold);
+        }
+
+        .story-text {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .story-text .label {
+            color: var(--ember);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            font-size: 13px;
+        }
+
+        .story-text p {
+            font-size: 20px;
+            color: rgba(18, 18, 18, 0.8);
+            line-height: 1.7;
+        }
+
+        .btn-story {
+            width: fit-content;
+            padding: 16px 32px;
+            background-color: var(--charcoal);
+            color: var(--cream);
+            border: none;
+            font-family: var(--font-display);
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-story:hover {
+            background-color: var(--ember);
+            transform: translateY(-3px);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-color: #141414;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .testimonial-card {
+            background-color: var(--charcoal);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .stars {
+            color: var(--gold);
+            display: flex;
+            gap: 4px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card p {
+            font-size: 18px;
+            font-style: italic;
+            color: rgba(245, 245, 240, 0.8);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .testimonial-card .author {
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--ember);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--ember) 0%, #CC5500 100%);
+            border-radius: 40px;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box h2 {
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            margin-bottom: 16px;
+            color: white;
+            line-height: 0.9;
+        }
+
+        .cta-box p {
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 48px;
+            font-weight: 400;
+        }
+
+        .cta-btns {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            border-radius: 100px;
+            padding: 18px 40px;
+            font-size: 24px;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-call {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 100px;
+            padding: 18px 40px;
+            font-size: 24px;
+        }
+
+        .btn-call:hover {
+            background-color: white;
+            color: var(--ember);
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            padding: 80px 0 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        @media (min-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+            }
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            color: rgba(245, 245, 240, 0.5);
+            max-width: 350px;
+            font-size: 16px;
+            margin-bottom: 32px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-links a {
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--ember);
+            border-color: var(--ember);
+            transform: translateY(-5px);
+        }
+
+        .footer-links h4 {
+            color: var(--gold);
+            font-size: 14px;
+            letter-spacing: 0.2em;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a {
+            color: rgba(245, 245, 240, 0.6);
+            font-size: 15px;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--ember);
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            align-items: center;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+
+        .copyright {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(245, 245, 240, 0.3);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 24px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(245, 245, 240, 0.3);
+        }
+
+        .footer-legal a:hover {
+            color: var(--cream);
+        }
+
+        /* Reveal on Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0F0F0F;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu a {
+            font-family: var(--font-display);
+            font-size: 56px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .mobile-menu .close-btn {
+            position: absolute;
+            top: 32px;
+            right: 32px;
+            cursor: pointer;
+            color: var(--cream);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="noise"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-btn" id="closeMenu"><i data-lucide="x" size="48"></i></div>
+        <a href="#menu" class="menu-link">Menu</a>
+        <a href="#about" class="menu-link">About</a>
+        <a href="#our-story" class="menu-link">Our Story</a>
+        <a href="#contact" class="menu-link">Contact</a>
+        <a href="https://wa.me/923001234567" class="btn btn-primary" style="border-radius: 100px; padding: 16px 48px; font-size: 28px;">Order Now</a>
+    </div>
+
+    <!-- Navbar -->
+    <nav id="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <i data-lucide="flame" class="fill-ember"></i>
+                <span>MA</span> BURGER
+            </a>
+            <div class="nav-links">
+                <a href="#menu">Menu</a>
+                <a href="#about">About</a>
+                <a href="#our-story">Our Story</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div style="display: flex; align-items: center; gap: 24px;">
+                <a href="https://wa.me/923001234567" class="btn-order-nav">Order Now</a>
+                <div class="mobile-toggle" id="openMenu">
+                    <i data-lucide="menu" size="36"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-glow"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 id="heroHeadline">
+                    <!-- Words will be injected here by JS -->
+                </h1>
+                <p>Karachi's premium smash burger experience. Handcrafted with passion, fired with soul, and served with a blessing.</p>
+                <div class="hero-btns">
+                    <a href="#menu" class="btn btn-primary">See the Menu <i data-lucide="arrow-right"></i></a>
+                    <a href="#our-story" class="btn btn-outline">Our Story</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?q=80&w=1000&auto=format&fit=crop" alt="The MA Classic Smash Burger">
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+        <div class="trust-scroll">
+            <div class="trust-item active"><i data-lucide="star" size="16" class="fill-gold"></i> 4.9/5 Rating</div>
+            <div class="trust-item">100% Premium Halal Beef</div>
+            <div class="trust-item">Freshly Baked Brioche</div>
+            <div class="trust-item active">Karachi's Boldest Grill</div>
+            <div class="trust-item">10k+ Burgers Served</div>
+            <!-- Duplicated for loop -->
+            <div class="trust-item active"><i data-lucide="star" size="16" class="fill-gold"></i> 4.9/5 Rating</div>
+            <div class="trust-item">100% Premium Halal Beef</div>
+            <div class="trust-item">Freshly Baked Brioche</div>
+            <div class="trust-item active">Karachi's Boldest Grill</div>
+            <div class="trust-item">10k+ Burgers Served</div>
+        </div>
+    </div>
+
+    <!-- Menu Section -->
+    <section class="section reveal" id="menu">
+        <div class="container">
+            <div class="section-header">
+                <h2>The <span>MA Menu</span></h2>
+                <p>Handcrafted to order. No shortcuts. Just pure, unadulterated burger bliss.</p>
+            </div>
+            <div class="menu-grid">
+                <!-- Card 1 -->
+                <div class="menu-card">
+                    <div class="badge">Bestseller</div>
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800&auto=format&fit=crop" alt="MA Classic Smash Burger">
+                    </div>
+                    <div class="card-info">
+                        <h3>MA Classic</h3>
+                        <span class="price">PKR 850</span>
+                    </div>
+                    <p class="card-desc">The OG. Smashed beef, secret MA sauce, and melted cheddar on brioche.</p>
+                    <button class="btn-card">Add to Order</button>
+                </div>
+                <!-- Card 2 -->
+                <div class="menu-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=800&auto=format&fit=crop" alt="Double Smash Burger">
+                    </div>
+                    <div class="card-info">
+                        <h3>Double Smash</h3>
+                        <span class="price">PKR 1,250</span>
+                    </div>
+                    <p class="card-desc">Double the beef, double the blessing. For the true burger enthusiasts.</p>
+                    <button class="btn-card">Add to Order</button>
+                </div>
+                <!-- Card 3 -->
+                <div class="menu-card">
+                    <div class="badge">🔥 Spicy</div>
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1512152272829-e3139592d56f?q=80&w=800&auto=format&fit=crop" alt="The Desi Stack Burger">
+                    </div>
+                    <div class="card-info">
+                        <h3>The Desi Stack</h3>
+                        <span class="price">PKR 1,100</span>
+                    </div>
+                    <p class="card-desc">Karachi's soul in a bun. Masala-spiced onions and our signature green chutney.</p>
+                    <button class="btn-card">Add to Order</button>
+                </div>
+                <!-- Card 4 -->
+                <div class="menu-card">
+                    <div class="badge">New</div>
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=800&auto=format&fit=crop" alt="Crispy Chicken Burger">
+                    </div>
+                    <div class="card-info">
+                        <h3>Crispy Zinger</h3>
+                        <span class="price">PKR 950</span>
+                    </div>
+                    <p class="card-desc">Golden, crunchy, and unapologetically bold. The ultimate chicken experience.</p>
+                    <button class="btn-card">Add to Order</button>
+                </div>
+                <!-- Card 5 -->
+                <div class="menu-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=800&auto=format&fit=crop" alt="BBQ Ember Burger">
+                    </div>
+                    <div class="card-info">
+                        <h3>BBQ Ember</h3>
+                        <span class="price">PKR 1,350</span>
+                    </div>
+                    <p class="card-desc">Smoky, sweet, and street-credible. Topped with crispy onion rings and BBQ glaze.</p>
+                    <button class="btn-card">Add to Order</button>
+                </div>
+                <!-- Card 6 -->
+                <div class="menu-card">
+                    <div class="badge">New</div>
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?q=80&w=800&auto=format&fit=crop" alt="Cheese Overflow Burger">
+                    </div>
+                    <div class="card-info">
+                        <h3>Cheese Flood</h3>
+                        <span class="price">PKR 1,450</span>
+                    </div>
+                    <p class="card-desc">A literal high tide of melted cheddar. Not for the faint of heart.</p>
+                    <button class="btn-card">Add to Order</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="section story reveal" id="our-story">
+        <div class="calligraphy">ماشاء الله</div>
+        <div class="container">
+            <div class="story-quote" id="about">
+                <i data-lucide="quote" size="64"></i>
+                <h2>"Every burger is made with <span>two hands</span> and <span class="gold">one prayer</span>."</h2>
+            </div>
+            <div class="story-text">
+                <div class="label">Our Roots</div>
+                <p>MA Burger was born in the heart of Karachi with a simple mission: to elevate street food into a premium experience without losing its soul. Our name, "Masha Allah," is a reminder of the gratitude we feel for every guest we serve.</p>
+                <p>We source 100% Halal, premium beef daily and bake our brioche in-house. No shortcuts, no compromises—just real food for real people.</p>
+                <button class="btn-story">Read Our Full Story</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section testimonials reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2>What <span>They Say</span></h2>
+                <p>Don't just take our word for it. Listen to the thousands who've joined the MA family.</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" size="16" class="fill-gold"></i>
+                        <i data-lucide="star" size="16" class="fill-gold"></i>
+                        <i data-lucide="star" size="16" class="fill-gold"></i>
+                        <i data-lucide="star" size="16" class="fill-gold"></i>
+                        <i data-lucide="star" size="16" class="fill-gold"></i>
+                    </div>
+                    <p>"The best smash burger in Karachi, hands down. The quality of the meat is unmatched."</p>
+                    <div class="author">Omar J.</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" size="16" class="fill-gold"></i>
+                        <i data-lucide="star" size="16" class="fill-gold"></i>
+                        <i data-lucide="star" size="16" class="fill-gold"></i>
+                        <i data-lucide="star" size="16" class="fill-gold"></i>
+                        <i data-lucide="star" size="16" class="fill-gold"></i>
+                    </div>
+                    <p>"Masha Allah, the flavor is incredible. The Desi Stack is a masterpiece of fusion."</p>
+                    <div class="author">Sarah K.</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" size="16" class="fill-gold"></i>
+                        <i data-lucide="star" size="16" class="fill-gold"></i>
+                        <i data-lucide="star" size="16" class="fill-gold"></i>
+                        <i data-lucide="star" size="16" class="fill-gold"></i>
+                        <i data-lucide="star" size="16" class="fill-gold"></i>
+                    </div>
+                    <p>"Premium vibes, street energy. MA Burger is my go-to spot every single weekend."</p>
+                    <div class="author">Bilal A.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section reveal">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Ready for a Blessing?</h2>
+                <p>Order fresh. Pick up hot. Experience the MA difference today.</p>
+                <div class="cta-btns">
+                    <a href="https://wa.me/923001234567" class="btn btn-whatsapp"><i data-lucide="message-circle"></i> Order on WhatsApp</a>
+                    <a href="tel:+923001234567" class="btn btn-call"><i data-lucide="phone"></i> Call Us Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <i data-lucide="flame" class="fill-ember"></i>
+                        <span>MA</span> BURGER
+                    </a>
+                    <p>Premium Pakistani burger brand bringing the energy of Karachi to your plate. Masha Allah in every bite, street-credible in every grill.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram"><i data-lucide="instagram" size="20"></i></a>
+                        <a href="#" aria-label="Twitter"><i data-lucide="twitter" size="20"></i></a>
+                        <a href="#" aria-label="Facebook"><i data-lucide="facebook" size="20"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#menu">The Menu</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#our-story">Our Story</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Feedback</a></li>
+                        <li><a href="#">Franchise</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Find Us</h4>
+                    <ul>
+                        <li style="color: rgba(245, 245, 240, 0.5); font-size: 15px; margin-bottom: 12px;"><i data-lucide="map-pin" size="16" style="margin-right: 8px; vertical-align: middle;"></i> DHA Phase 6, Karachi</li>
+                        <li style="color: rgba(245, 245, 240, 0.5); font-size: 15px; margin-bottom: 12px;"><i data-lucide="phone" size="16" style="margin-right: 8px; vertical-align: middle;"></i> +92 300 1234567</li>
+                        <li style="color: rgba(245, 245, 240, 0.5); font-size: 15px;"><i data-lucide="mail" size="16" style="margin-right: 8px; vertical-align: middle;"></i> hello@maburger.pk</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">© 2025 MA Burger. All rights reserved. Masha Allah 🤲</div>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+                <div class="copyright" style="display: flex; align-items: center; gap: 4px;">
+                    Crafted with <i data-lucide="heart" size="12" class="fill-gold" style="color: var(--gold);"></i> in Karachi
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Hero Headline Animation
+        const headlineText = "Burgers So Good, It's Masha Allah.";
+        const headlineContainer = document.getElementById('heroHeadline');
+        
+        headlineText.split(' ').forEach((word, index) => {
+            const span = document.createElement('span');
+            span.className = 'word';
+            if (word === 'Masha' || word === 'Allah.') {
+                span.classList.add('ember');
+            }
+            span.textContent = word + ' ';
+            span.style.animation = `fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards ${index * 0.12}s`;
+            headlineContainer.appendChild(span);
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Reveal on Scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Mobile Menu Toggle
+        const openMenu = document.getElementById('openMenu');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        openMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        const closeMenuFunc = () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+
+        closeMenu.addEventListener('click', closeMenuFunc);
+        menuLinks.forEach(link => link.addEventListener('click', closeMenuFunc));
+
+        // Keyframe for FadeUp
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeUp {
+                from { opacity: 0; transform: translateY(30px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+
+    </script>
+</body>
+</html>
