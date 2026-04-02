@@ -1,20 +1,33 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# MA Burger — Official Website
 
-# Run and deploy your AI Studio app
+High-converting landing page for **MA Burger** — a premium halal smash burger brand based in Karachi, Pakistan.
 
-This contains everything you need to run your app locally.
+---
 
-View your app in AI Studio: https://ai.studio/apps/39236540-5735-4801-850f-5835e94e2c2d
+## Stack
 
-## Run Locally
+Pure HTML · CSS3 · Vanilla JS — no frameworks, no build tools, no dependencies.
 
-**Prerequisites:**  Node.js
+## Features
 
+- Fully responsive (mobile-first)
+- Scroll-triggered animations via IntersectionObserver
+- WhatsApp & call CTAs for direct order conversion
+- Menu showcase with pricing in PKR
+- Dark luxury aesthetic — charcoal, ember orange, gold
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Deployment
+
+Works out of the box on **GitHub Pages**, **Netlify**, or **Vercel** — just point to `index.html`.
+
+## Configuration
+
+| What | Where |
+|---|---|
+| WhatsApp number | `href="https://wa.me/92XXXXXXXXXX"` |
+| Brand color | `--color-primary` in `:root` CSS variables |
+| Menu items | `#menu` section burger cards |
+
+## License
+
+MIT © 2025 MA Burger
