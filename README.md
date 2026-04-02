@@ -2,6 +2,8 @@
 
 High-converting landing page for **MA Burger** — a premium halal smash burger brand based in Karachi, Pakistan.
 
+🌐 **Live:** [ma-burger.netlify.app](https://ma-burger.netlify.app/)
+
 ---
 
 ## Stack
@@ -16,9 +18,17 @@ Pure HTML · CSS3 · Vanilla JS — no frameworks, no build tools, no dependenci
 - Menu showcase with pricing in PKR
 - Dark luxury aesthetic — charcoal, ember orange, gold
 
+## Getting Started
+
+```bash
+git clone https://github.com/YOUR_USERNAME/ma-burger-website.git
+cd ma-burger-website
+open index.html
+```
+
 ## Deployment
 
-Works out of the box on **GitHub Pages**, **Netlify** — just point to `https://ma-burger.netlify.app/`.
+Works out of the box on **GitHub Pages**, **Netlify**, or **Vercel** — just point to `index.html`.
 
 ## Configuration
 
@@ -30,4 +40,4 @@ Works out of the box on **GitHub Pages**, **Netlify** — just point to `https:/
 
 ## License
 
-MIT © 2025 MA Burger
+MIT © 2026 MA Burger
