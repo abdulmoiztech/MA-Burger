@@ -18,13 +18,13 @@ Pure HTML · CSS3 · Vanilla JS — no frameworks, no build tools, no dependenci
 
 ## Deployment
 
-Works out of the box on **GitHub Pages**, **Netlify**, or **Vercel** — just point to `index.html`.
+Works out of the box on **GitHub Pages**, **Netlify** — just point to `https://ma-burger.netlify.app/`.
 
 ## Configuration
 
 | What | Where |
 |---|---|
-| WhatsApp number | `href="https://wa.me/92XXXXXXXXXX"` |
+| WhatsApp number | `href="https://wa.me/+92 311 8354527"` |
 | Brand color | `--color-primary` in `:root` CSS variables |
 | Menu items | `#menu` section burger cards |
 
