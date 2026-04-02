@@ -36,7 +36,7 @@ You can customize the entire brand vibe by editing just a few lines:
 
 | Feature | Action |
 | :--- | :--- |
-| **Ordering** | Update `wa.me/92XXXXXXXXXX` with your business number. |
+| **Ordering** | Update `wa.me/+92 311 8354527` with your business number. |
 | **Branding** | Change `--color-primary` in the CSS `:root` variables. |
 | **Menu** | Add/Remove burger cards in the `#menu` section of `index.html`. |
 | **Images** | Replace files in the `/assets` folder with your own high-res food shots. |
